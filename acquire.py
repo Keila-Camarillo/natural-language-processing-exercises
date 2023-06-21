@@ -26,9 +26,10 @@ def get_blog_articles(url='https://codeup.com/blog/'):
         # title
         title = soup.h1.text
         # content info
-        text_list = [p.get_text(strip=True) for div in soup.find_all("div", class_="entry-content") for p in div.find_all("p")]
+        
         # append dict to list
-        content_dict = {"title": title, "content": text_list}
+        content_dict = {"title": title, 
+                        "content": soup.find('div', class_="entry-content").text}
         article_dict.append(content_dict)
     return article_dict
 
