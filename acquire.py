@@ -54,6 +54,8 @@ def get_news_articles(url="https://blog.inshorts.com/"):
             category_list = [i["class"][6][9:] for i in soup.find_all("article")]
             # append dict to list
 
-            content_dict = {"title": title, "content": text_list, "category": category_list}
+            content_dict = {"title": title, 
+                            "content": soup.find('div', class_="entry-content"),
+                            "category": category_list}
             article_dict.append(content_dict)
     return article_dict
